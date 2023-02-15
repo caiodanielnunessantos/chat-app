@@ -6,6 +6,7 @@ import {
   SocketData,
 } from '~../../common/dist';
 import { io, Socket } from 'socket.io-client';
+import './App.css';
 
 const client: Socket<ServerToClientMessages, ClientToServerMessages> = io('http://localhost:3000/');
 
@@ -20,13 +21,13 @@ export default function App() {
     client.emit('set_name', name);
   };
   return (
-    <>
+    <div className="App">
       <form onSubmit={ onSubmit }>
         <input id="your-name" type="text" onChange={(event) => set_name(event.target.value)} />
       </form>
       {
         participants.map((participant, index) => (<p key={index}>{participant}</p>))
       }
-    </>
+    </div>
   );
 }
